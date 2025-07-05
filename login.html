@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Turista</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <header class="header" id="header">
+    <h1 class="logo">
+      <a href="/index.html">KaraguáMar</a>
+    </h1>
+
+    <nav class="nav-header">
+      <ul class="nav-links">
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/sobre.html">Sobre</a></li>
+        <li><a href="/praias.html">Praias</a></li>
+      </ul>
+    </nav>
+
+    <a href="/login.html" class="login-btn">Login</a>
+  </header>
+
+  <div class="container">
+    <div class="box">
+      <h1>Login de Turista</h1>
+      <form onsubmit="validateTouristLogin(event)">
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Email" required />
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Senha" required />
+        </div>
+        <label class="checkbox">
+          <input type="checkbox" onclick="togglePassword()" /> Mostrar senha
+        </label>
+        <button type="submit">Entrar</button>
+      </form>
+
+      <p>Não tem uma conta? <a href="/account.html">Cadastre-se</a></p>
+      <p>É guia turístico? <a href="/logindoguia.html">Login de Guia</a></p>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const input = document.getElementById("password");
+      input.type = input.type === "password" ? "text" : "password";
+    }
+
+    function validateTouristLogin(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!email || !password) {
+        alert("Preencha todos os campos.");
+        return;
+      }
+
+      alert(`Bem-vindo(a), ${email}!`);
+      localStorage.setItem("userType", "turista");
+      window.location.href = "/prainha.html";
+    }
+  </script>
+
+</body>
+</html>

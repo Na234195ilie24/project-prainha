@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    < <header class="header" id="header">
+        <h1 class="logo">
+            <a href="/index.html">KaraguáMar</a>
+        </h1>
+        <nav class="nav-header">
+            <ul>
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/sobre.html">Sobre</a></li>
+                <li><a href="/praias.html">Praias</a></li>
+                <li><a href="/login.html">Login Visitante</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars fa-lg"></i>
+        </div>
+        <a href="/perfil.html">
+            <picture>
+                <img src="/public/Perfil.jpg" class="perfil" alt="Perfil">
+            </picture>
+        </a>
+    </header>
+
+    <div class="container">
+        <div class="box">
+            <h1>Login do Guia Turístico</h1>
+            <form onsubmit="validateGuideLogin(event)">
+                <div class="input-group">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" placeholder="Senha" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="cadastur" name="cadastur" placeholder="Número do Cadastur" required>
+                </div>
+                <label class="checkbox">
+                    <input type="checkbox" onclick="togglePassword()"> Mostrar senha
+                </label>
+                <button type="submit">Entrar</button>
+            </form>
+
+            <p>Não possui uma conta?</p>
+            <p><a href="/cadastroguia.html">Cadastre-se como Guia Turístico</a></p>
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar Ponto Turístico -->
+    <div id="task-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2 id="modal-title">Adicionar Ponto Turístico</h2>
+            <div class="modal-body">
+                <input type="text" id="task-text" placeholder="Nome do Ponto (ex: Quiosque João)">
+                <select id="task-category">
+                    <option value="quiosque">Quiosque</option>
+                    <option value="evento">Evento</option>
+                    <option value="atração">Atração</option>
+                </select>
+                <textarea id="task-description" placeholder="Descrição do local ou evento..."></textarea>
+                <label for="task-time">Horário:</label>
+                <input type="time" id="task-time">
+                <label for="task-date">Data (se for evento):</label>
+                <input type="date" id="task-date">
+            </div>
+            <div class="modal-footer">
+                <button id="save-task-btn" class="save-btn">Salvar</button>
+                <button id="cancel-task-btn" class="cancel-btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passInput = document.getElementById("password");
+            passInput.type = passInput.type === "password" ? "text" : "password";
+        }
+
+        function validateGuideLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const cadastur = document.getElementById("cadastur").value;
+
+            if (!cadastur.match(/^\d{6,}$/)) {
+                alert("Número do Cadastur inválido.");
+                return;
+            }
+
+            // Simulação de login, substitua com API backend real
+            alert("Login bem-sucedido! Bem-vindo, Guia.");
+            document.getElementById("task-modal").style.display = "block";
+        }
+
+        // Exemplo para salvar ponto turístico
+        document.getElementById("save-task-btn").addEventListener("click", function () {
+            const nome = document.getElementById("task-text").value;
+            const tipo = document.getElementById("task-category").value;
+            const descricao = document.getElementById("task-description").value;
+            const horario = document.getElementById("task-time").value;
+            const data = document.getElementById("task-date").value;
+
+            console.log({ nome, tipo, descricao, horario, data });
+            alert("Ponto adicionado com sucesso!");
+
+            // Aqui você pode enviar isso para seu backend via fetch()
+        });
+    </script>
+
+
+    <script src="/Js/index.js" defer></script>
+
+</body>
+
+</html>

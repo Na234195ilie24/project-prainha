@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <picture class="border01"><img src="/public/Borda02.png" /></picture>
+        <picture class="border02"><img src="/public/Borda03.png" /></picture>
+    
+        <div class="box">
+            <h1>CADASTRO DO GUIA TURÍSTICO</h1>
+    
+            <form id="guide-signup-form" onsubmit="handleGuideSignup(event)" novalidate>
+                <div class="input-group">
+                    <input type="text" id="guide-name" placeholder="Nome completo" required>
+                </div>
+    
+                <div class="input-group">
+                    <input type="email" id="guide-email" placeholder="Email" required>
+                </div>
+    
+                <div class="input-group">
+                    <input type="password" id="guide-password" placeholder="Senha" required>
+                </div>
+    
+                <div class="input-group">
+                    <input type="text" id="cadastur" placeholder="Número do Cadastur" required>
+                </div>
+    
+                <div class="input-group">
+                    <input type="text" id="doc" placeholder="Documento oficial (RG ou CNH)" required>
+                </div>
+    
+                <label class="checkbox">
+                    <input type="checkbox" onclick="toggleGuidePassword()"> Mostrar senha
+                </label>
+    
+                <button type="submit">Cadastrar Guia</button>
+            </form>
+    
+            <p>Já tem uma conta? <a href="/logindoguia.html">Clique aqui para entrar</a></p>
+            <p>Não é guia? <a href="/account.html">Cadastre-se como turista</a></p>
+        </div>
+    </div>
+
+<script>
+    function toggleGuidePassword() {
+        const input = document.getElementById("guide-password");
+        input.type = input.type === "password" ? "text" : "password";
+    }
+    
+    function handleGuideSignup(event) {
+        event.preventDefault();
+    
+        const nome = document.getElementById("guide-name").value.trim();
+        const email = document.getElementById("guide-email").value.trim();
+        const senha = document.getElementById("guide-password").value;
+        const cadastur = document.getElementById("cadastur").value.trim();
+        const doc = document.getElementById("doc").value.trim();
+    
+        if (!nome || !email || !senha || !cadastur || !doc) {
+            alert("Preencha todos os campos.");
+            return;
+        }
+    
+        const dadosGuia = {
+            tipo: "guia",
+            nome,
+            email,
+            senha,
+            cadastur,
+            documento: doc
+        };
+    
+        console.log("Enviando dados do guia:", dadosGuia);
+        alert("Guia cadastrado com sucesso!");
+        // Aqui você pode usar fetch() para enviar ao servidor
+    }
+    </script>
+
+</body>
+
+</html>

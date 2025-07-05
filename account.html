@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - Turista</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+  <header class="header" id="header">
+    <h1 class="logo">
+      <a href="/index.html">KaraguáMar</a>
+    </h1>
+
+    <nav class="nav-header">
+      <ul class="nav-links">
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/sobre.html">Sobre</a></li>
+        <li><a href="/praias.html">Praias</a></li>
+      </ul>
+    </nav>
+
+    <a href="/login.html" class="login-btn">Login</a>
+  </header>
+
+  <div class="container">
+    <div class="box">
+      <h1>Crie sua conta de Turista</h1>
+
+      <form id="signup-form" onsubmit="handleSignup(event)" novalidate>
+        <div class="input-group">
+          <input type="text" id="username" name="username" placeholder="Nome completo" required />
+        </div>
+
+        <div class="input-group">
+          <input type="email" id="email" name="email" placeholder="Email" required />
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="password" name="password" placeholder="Senha" required />
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" onclick="togglePassword()" /> Mostrar senha
+        </label>
+
+        <button type="submit">Criar Conta</button>
+      </form>
+
+      <p>Já tem uma conta? <a href="/login.html">Clique aqui</a> e entre agora.</p>
+      <p>É guia turístico? <a href="/cadastroguia.html">Cadastre-se aqui</a></p>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const input = document.getElementById("password");
+      input.type = input.type === "password" ? "text" : "password";
+    }
+
+    function handleSignup(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("password").value;
+
+      if (!nome || !email || !senha) {
+        alert("Preencha todos os campos.");
+        return;
+      }
+
+      const dadosTurista = {
+        tipo: "turista",
+        nome,
+        email,
+        senha
+      };
+
+      console.log("Enviando dados do turista:", dadosTurista);
+      alert("Conta de turista criada com sucesso!");
+      // Redirecionamento ou envio para servidor pode ser feito aqui
+    }
+  </script>
+
+</body>
+
+</html>
