@@ -1,93 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;900&display=swap" rel="stylesheet">
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro Guia Turístico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+        font-family: 'Nunito', sans-serif;
+        background: linear-gradient(to bottom, #e6f7f7, #ffffff);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .header {
+      background-color: #066666;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo a {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+    }
+
+    .nav-header ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .nav-header a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-header a:hover {
+      color: #0e7490;
+    }
+
+    .login-btn {
+    background-color: #fff;
+    color: #066666;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+
+    .login-btn:hover {
+      background-color: #0891b2;
+    }
+
+    /* CONTAINER */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .box {
+      background-color: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      max-width: 450px;
+      width: 100%;
+    }
+
+    .box h1 {
+      text-align: center;
+      color: #0e7490;
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    .checkbox input {
+      margin-right: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0e7490;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0891b2;
+    }
+
+    .box p {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.9rem;
+    }
+
+    .box a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .box a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+      .box {
+        padding: 30px 20px;
+      }
+
+      .nav-header ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
 <body>
 
-    <div class="container">
-        <picture class="border01"><img src="/public/Borda02.png" /></picture>
-        <picture class="border02"><img src="/public/Borda03.png" /></picture>
-    
-        <div class="box">
-            <h1>CADASTRO DO GUIA TURÍSTICO</h1>
-    
-            <form id="guide-signup-form" onsubmit="handleGuideSignup(event)" novalidate>
-                <div class="input-group">
-                    <input type="text" id="guide-name" placeholder="Nome completo" required>
-                </div>
-    
-                <div class="input-group">
-                    <input type="email" id="guide-email" placeholder="Email" required>
-                </div>
-    
-                <div class="input-group">
-                    <input type="password" id="guide-password" placeholder="Senha" required>
-                </div>
-    
-                <div class="input-group">
-                    <input type="text" id="cadastur" placeholder="Número do Cadastur" required>
-                </div>
-    
-                <div class="input-group">
-                    <input type="text" id="doc" placeholder="Documento oficial (RG ou CNH)" required>
-                </div>
-    
-                <label class="checkbox">
-                    <input type="checkbox" onclick="toggleGuidePassword()"> Mostrar senha
-                </label>
-    
-                <button type="submit">Cadastrar Guia</button>
-            </form>
-    
-            <p>Já tem uma conta? <a href="/logindoguia.html">Clique aqui para entrar</a></p>
-            <p>Não é guia? <a href="/account.html">Cadastre-se como turista</a></p>
-        </div>
-    </div>
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <h1 class="logo">
+      <a href="/index.html">KaraguáMar</a>
+    </h1>
+    <nav class="nav-header">
+      <ul class="nav-links">
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/sobre.html">Sobre</a></li>
+        <li><a href="/praias.html">Praias</a></li>
+      </ul>
+    </nav>
+    <a href="/login.html" class="login-btn">Login</a>
+  </header>
 
-<script>
+  <!-- FORMULÁRIO -->
+  <div class="container">
+    <div class="box">
+      <h1>Cadastro do Guia Turístico</h1>
+
+      <form onsubmit="handleGuideSignup(event)">
+        <div class="input-group">
+          <input type="text" id="guide-name" placeholder="Nome completo" required />
+        </div>
+        <div class="input-group">
+          <input type="email" id="guide-email" placeholder="Email" required />
+        </div>
+        <div class="input-group">
+          <input type="password" id="guide-password" placeholder="Senha" required />
+        </div>
+        <div class="input-group">
+          <input type="text" id="cadastur" placeholder="Número do Cadastur" required />
+        </div>
+        <div class="input-group">
+          <input type="text" id="doc" placeholder="Documento oficial (RG ou CNH)" required />
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" onclick="toggleGuidePassword()" /> Mostrar senha
+        </label>
+
+        <button type="submit">Cadastrar Guia</button>
+      </form>
+
+      <p>Já tem uma conta? <a href="/logindoguia.html">Clique aqui para entrar</a></p>
+      <p>Não é guia? <a href="/account.html">Cadastre-se como turista</a></p>
+    </div>
+  </div>
+
+  <script>
     function toggleGuidePassword() {
-        const input = document.getElementById("guide-password");
-        input.type = input.type === "password" ? "text" : "password";
+      const input = document.getElementById("guide-password");
+      input.type = input.type === "password" ? "text" : "password";
     }
-    
+
     function handleGuideSignup(event) {
-        event.preventDefault();
-    
-        const nome = document.getElementById("guide-name").value.trim();
-        const email = document.getElementById("guide-email").value.trim();
-        const senha = document.getElementById("guide-password").value;
-        const cadastur = document.getElementById("cadastur").value.trim();
-        const doc = document.getElementById("doc").value.trim();
-    
-        if (!nome || !email || !senha || !cadastur || !doc) {
-            alert("Preencha todos os campos.");
-            return;
-        }
-    
-        const dadosGuia = {
-            tipo: "guia",
-            nome,
-            email,
-            senha,
-            cadastur,
-            documento: doc
-        };
-    
-        console.log("Enviando dados do guia:", dadosGuia);
-        alert("Guia cadastrado com sucesso!");
-        // Aqui você pode usar fetch() para enviar ao servidor
+      event.preventDefault();
+
+      const nome = document.getElementById("guide-name").value.trim();
+      const email = document.getElementById("guide-email").value.trim();
+      const senha = document.getElementById("guide-password").value;
+      const cadastur = document.getElementById("cadastur").value.trim();
+      const doc = document.getElementById("doc").value.trim();
+
+      if (!nome || !email || !senha || !cadastur || !doc) {
+        alert("Preencha todos os campos.");
+        return;
+      }
+
+      const dadosGuia = {
+        tipo: "guia",
+        nome,
+        email,
+        senha,
+        cadastur,
+        documento: doc
+      };
+
+      console.log("Enviando dados do guia:", dadosGuia);
+      alert("Guia cadastrado com sucesso!");
     }
-    </script>
+  </script>
 
 </body>
-
 </html>

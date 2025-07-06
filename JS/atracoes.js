@@ -1,14 +1,12 @@
-// /Js/atracoes.js
-
 const userType = localStorage.getItem("userType"); // 'turista' ou 'guia'
 
-// Inicializa com padrão caso localStorage esteja vazio
+// Dados iniciais
 let attractions = JSON.parse(localStorage.getItem("attractions")) || [
   {
     id: 1,
-    name: "Quiosque do João",
-    category: "quiosque",
-    description: "Melhores petiscos da região.",
+    name: "Jogo dos Artistas",
+    category: "evento",
+    description: "Partida de futebol beneficente com artistas locais.",
     time: "10:00",
     date: "2023-10-01"
   },
@@ -24,31 +22,31 @@ let attractions = JSON.parse(localStorage.getItem("attractions")) || [
 
 let editingId = null;
 
-// Função principal que renderiza as atrações
+// Renderiza os cards
 function renderAttractions() {
   const container = document.getElementById("attractions-container");
   container.innerHTML = '';
 
   attractions.forEach(attraction => {
     const div = document.createElement("div");
-    div.className = "attraction";
+    div.className = "attraction-card";
     div.innerHTML = `
       <h3>${attraction.name}</h3>
       <p><strong>Categoria:</strong> ${attraction.category}</p>
-      <p><strong>Descrição:</strong> ${attraction.description}</p>
+      <p>${attraction.description}</p>
       <p><strong>Horário:</strong> ${attraction.time}</p>
       <p><strong>Data:</strong> ${attraction.date}</p>
       ${userType === "guia" ? `
-        <button onclick="editAttraction(${attraction.id})">Editar</button>
-        <button onclick="deleteAttraction(${attraction.id})">Excluir</button>
+        <div class="card-buttons">
+          <button onclick="editAttraction(${attraction.id})">Editar</button>
+          <button onclick="deleteAttraction(${attraction.id})">Excluir</button>
+        </div>
       ` : ""}
-      <hr/>
     `;
     container.appendChild(div);
   });
 }
 
-// Abre o modal para novo ou edição
 function openModal(attraction = null) {
   const modal = document.getElementById("task-modal");
   modal.style.display = "block";
@@ -72,13 +70,11 @@ function openModal(attraction = null) {
   }
 }
 
-// Fecha modal e reseta campos
 function closeModal() {
   document.getElementById("task-modal").style.display = "none";
   editingId = null;
 }
 
-// Salva novo ou edição
 function saveAttraction() {
   const name = document.getElementById("task-text").value;
   const category = document.getElementById("task-category").value;
@@ -111,7 +107,6 @@ function saveAttraction() {
   closeModal();
 }
 
-// Botão Editar
 function editAttraction(id) {
   const attraction = attractions.find(a => a.id === id);
   if (attraction) {
@@ -119,7 +114,6 @@ function editAttraction(id) {
   }
 }
 
-// Botão Excluir
 function deleteAttraction(id) {
   if (!confirm("Deseja excluir esta atração?")) return;
 
@@ -128,7 +122,6 @@ function deleteAttraction(id) {
   renderAttractions();
 }
 
-// Eventos ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
   renderAttractions();
 
@@ -146,9 +139,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cancelBtn.addEventListener("click", closeModal);
 });
-
-function toggleMenu() {
-    const nav = document.querySelector('.nav-header');
-    nav.classList.toggle('active');
-  }
-  
